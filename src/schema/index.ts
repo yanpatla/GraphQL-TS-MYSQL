@@ -1,7 +1,7 @@
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
 import { CREATE_USER } from "./Mutations/User";
 import { GREETING } from "./Queries/Greeting";
-import { GET_ALL_USERS } from "./Queries/User";
+import { GET_ALL_USERS, GET_USER } from "./Queries/User";
 
 //*Consulta Principal
 
@@ -11,6 +11,7 @@ const RootQuery = new GraphQLObjectType({
     //* Que es lo que tiene que devolver
     greeting: GREETING,
     getAllUsers: GET_ALL_USERS,
+    getUser: GET_USER,
   },
 });
 
