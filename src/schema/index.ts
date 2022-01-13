@@ -1,4 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
+import { CREATE_USER } from "./Mutations/User";
 import { GREETING } from "./Queries/Greeting";
 
 //*Consulta Principal
@@ -11,10 +12,17 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    createUsers: CREATE_USER,
+  },
+});
+
 export const Schema = new GraphQLSchema({
   //*Consutlas, que cosas puedo solicitar de graphql, ej : metodos get
   query: RootQuery,
   //*Las Funciones que Alteran Datos
-  //   mutation: {},
+  mutation: Mutation,
   //* Graph QL son dos simples cosas, Consutal Datos como:Listar un Usuario, Obtener un usuario , Alterar Datos como: Crear un Usuario, Eliminarlo, Editarlo, Etc
 });
