@@ -1,6 +1,7 @@
 import { GraphQLString } from "graphql";
 import { Users } from "../../Entities/Users";
 import { UserType } from "../typeDef/User";
+import bcrypt from "bcryptjs";
 
 export const CREATE_USER = {
   //*Quiere deccir que cuando yo ejecute esta funcion me va a devolver por  respuesta un String
@@ -15,14 +16,16 @@ export const CREATE_USER = {
   async resolve(_: any, args: any) {
     const { name, username, password } = args;
 
+    const encryptpassword = await bcrypt.hash(password, 10);
     const result = await Users.insert({
       name: name,
       username: username,
-      password: password,
+      password: encryptpassword,
     });
     console.log(result);
     return {
-      ...args, id:result.identifiers[0].id
+      ...args,
+      id: result.identifiers[0].id,
     };
   },
 };
