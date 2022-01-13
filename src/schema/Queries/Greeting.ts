@@ -1,5 +1,5 @@
 import { GraphQLString } from "graphql";
 export const GREETING = {
-  type: GraphQLString,
+  type: GraphQLString,  
   resolve: () => "Hello World",
 };
