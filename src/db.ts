@@ -1,4 +1,5 @@
 import { createConnection } from "typeorm";
+import { Users } from "./Entities/Users";
 
 export const connectDB = async () => {
   await createConnection({
@@ -9,9 +10,9 @@ export const connectDB = async () => {
     host: "localhost",
     database: "usersdb",
     //*Para que pueda definir que tablas va a estar creadas en mi DB
-    entities: [],
+    entities: [Users],
     //* Lo que nos va a Permitir crear las Tablas si existen
-    synchronize: false,
+    synchronize: true,
     //*Para Conexiones Seguras
     ssl: false,
   });
